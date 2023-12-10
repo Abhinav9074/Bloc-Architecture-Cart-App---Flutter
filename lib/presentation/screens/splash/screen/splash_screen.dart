@@ -9,14 +9,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatelessWidget {
    SplashScreen({super.key});
-  late final LoginState;
+  late final loginState;
   @override
   Widget build(BuildContext context) {
     checkLogin();
     return BlocListener<SplashBloc,SplashState>(
       listener: (context,state){
         if(state is SplashLoadedLoginState){
-           if(LoginState==true){
+           if(loginState==true){
             Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx)=> const HomeScreen()));
            }else{
             Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx)=> LoginScreen()));
@@ -33,7 +33,7 @@ class SplashScreen extends StatelessWidget {
   }
   Future<void>checkLogin()async{
     final shared = await SharedPreferences.getInstance();
-    LoginState = shared.getBool('Login');
+    loginState = shared.getBool('Login');
   }
 
 }

@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mini_project/application/login_bloc/login_event.dart';
 import 'package:mini_project/application/login_bloc/login_state.dart';
-import 'package:mini_project/domain/api/api_functions.dart';
+import 'package:mini_project/domain/api/api_calling/api_functions.dart';
 
 class LoginBloc extends Bloc<LoginEvent,LoginState>{
   LoginBloc() : super(LoginInitialState()){
