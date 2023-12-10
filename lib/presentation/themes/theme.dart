@@ -23,6 +23,13 @@ class MyTextStyle {
       fontWeight: FontWeight.w100,
       fontFamily: 'Montserrat-Medium',
       letterSpacing: 0.9);
+      
+  static const TextStyle buttonTextBlack = TextStyle(
+      color: Color.fromARGB(255, 0, 0, 0),
+      fontSize: 20,
+      fontWeight: FontWeight.w100,
+      fontFamily: 'Montserrat-Medium',
+      letterSpacing: 0.9);
 
   static const TextStyle errorText = TextStyle(
       color: Color.fromARGB(255, 255, 5, 5),

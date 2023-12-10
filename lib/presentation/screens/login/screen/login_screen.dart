@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +8,7 @@ import 'package:mini_project/application/login_bloc/login_event.dart';
 import 'package:mini_project/application/login_bloc/login_state.dart';
 import 'package:mini_project/presentation/screens/home/screen/home_screen.dart';
 import 'package:mini_project/presentation/themes/theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -19,11 +22,12 @@ class LoginScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => LoginBloc(),
       child: BlocConsumer<LoginBloc, LoginState>(
-        listener: (context, state) {
+        listener: (context, state) async{
           if (state is LoginFailedState) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.errorMessage,style: MyTextStyle.buttonText,),backgroundColor: Colors.red,behavior: SnackBarBehavior.floating,));
           }
           if (state is LoginSuccessState) {
+            await setLogin();
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login Success',style: MyTextStyle.buttonText,),backgroundColor: Color.fromARGB(255, 3, 87, 28),behavior: SnackBarBehavior.floating,));
             Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (ctx) => const HomeScreen()));
@@ -117,5 +121,9 @@ class LoginScreen extends StatelessWidget {
         },
       ),
     );
+  }
+  Future<void>setLogin()async{
+    final instance = await SharedPreferences.getInstance();
+    await instance.setBool('Login', true);
   }
 }

@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: myTheme,
       home:  BlocProvider(
         create: (context) => SplashBloc(),
-        child: const SplashScreen(),
+        child:  SplashScreen(),
       ),
     );
   }
