@@ -2,6 +2,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mini_project/application/cart_bloc/cart_bloc.dart';
+import 'package:mini_project/application/cart_bloc/cart_event.dart';
 import 'package:mini_project/application/home_bloc/home_cubit.dart';
 import 'package:mini_project/application/home_bloc/home_state.dart';
 import 'package:mini_project/presentation/screens/home/widgets/floating_cart.dart';
@@ -50,16 +52,21 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       Image.network(
                         data.image,
-                        height: 120,
-                        width: 120,
+                        height: 100,
+                        width: 100,
                       ),
-                      Text(data.title),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(data.title),
+                      ),
                       Text(
                         '₹${data.price}',
                         style: MyTextStyle.buttonTextBlack,
                       ),
                       CupertinoButton.filled(
-                          child: const Text('Add To Cart'), onPressed: () {}),
+                          child: const Text('Add To Cart'), onPressed: () {
+                            BlocProvider.of<CartBloc>(context).add(CartIncrementEvent());
+                          }),
                     ],
                   );
                 }),
