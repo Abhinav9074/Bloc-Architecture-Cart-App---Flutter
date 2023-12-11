@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mini_project/application/cart_bloc/cart_bloc.dart';
 import 'package:mini_project/application/cart_bloc/cart_state.dart';
+import 'package:mini_project/presentation/screens/cart/screen/cart_screen.dart';
 import 'package:mini_project/presentation/themes/theme.dart';
 
 class FloatingCart extends StatelessWidget {
@@ -11,13 +12,17 @@ class FloatingCart extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CartBloc, CartState>(
       builder: (context, state) {
-        print('rebuild');
+        print(state.productsQuantity);
         return FittedBox(
           child: Stack(
             alignment: const Alignment(1.4, -1.5),
             children: [
               FloatingActionButton.extended(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
+                      return CartPage();
+                    }));
+                  },
                   backgroundColor: Colors.amber,
                   enableFeedback: true,
                   icon: const Icon(Icons.shopping_cart),

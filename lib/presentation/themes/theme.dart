@@ -12,7 +12,7 @@ class MyTextStyle {
 
   static const TextStyle commonText = TextStyle(
       color: Color.fromARGB(255, 0, 0, 0),
-      fontSize: 20,
+      fontSize: 15,
       fontWeight: FontWeight.w900,
       fontFamily: 'Montserrat-Medium',
       letterSpacing: 0.9);
